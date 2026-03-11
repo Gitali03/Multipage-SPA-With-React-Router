@@ -15,7 +15,7 @@ export async function action({ request }) {
     description: data.get("description"),
   };
 
-  const response = await fetch("http://localhost:8000/events", {
+  const response = await fetch("http://localhost:8080/events", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -24,8 +24,8 @@ export async function action({ request }) {
   });
 
   if (!response.ok) {
-    throw JSON.stringify({ message: "Could not save event." }, { status: 500 });
-  }
+    throw new Response (JSON.stringify({ message: "Could not save event." }), { status: 500 }
+  )};
 
   return redirect("/events");
 }
